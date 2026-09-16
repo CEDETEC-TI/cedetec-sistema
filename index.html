@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -207,6 +208,16 @@
     .contact-card .clabel { font-size: 0.76rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-family: 'Inter', sans-serif; }
     .contact-card .cvalue { font-family: 'Inter', sans-serif; font-weight: 700; }
 
+    .qr-box {
+        max-width: 280px; margin: 44px auto 0; background: #fff; border-radius: 16px;
+        padding: 28px 24px 24px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+    .qr-box #qrCanvas { display: flex; justify-content: center; margin-bottom: 16px; }
+    .qr-box #qrCanvas img, .qr-box #qrCanvas canvas { border-radius: 6px; }
+    .qr-caption { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--ink); margin-bottom: 4px; }
+    .qr-url { font-family: 'Inter', sans-serif; font-size: 0.76rem; color: var(--ink-soft); margin-bottom: 16px; word-break: break-all; }
+    .qr-box .btn { width: 100%; padding: 11px 20px; font-size: 0.8rem; }
+
     /* ---------- FOOTER ---------- */
     footer { background: var(--charcoal); color: rgba(247,247,251,0.5); padding: 40px 0 24px; border-top: 1px solid rgba(255,255,255,0.08); }
     .footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 0.78rem; font-family: 'Inter', sans-serif; }
@@ -390,6 +401,13 @@
                 <div class="clabel">Email</div>
                 <div class="cvalue">guillermobassi.u@gmail.com</div>
             </a>
+        </div>
+
+        <div class="qr-box">
+            <div id="qrCanvas"></div>
+            <p class="qr-caption">Escaneá para cotizar tu proyecto</p>
+            <p class="qr-url">cedetec-ti.github.io/cedetec-sistema</p>
+            <button id="qrDownloadBtn" class="btn btn-outline-dark"><i class="fa-solid fa-download"></i> Descargar QR</button>
         </div>
     </div>
 </section>
@@ -642,6 +660,61 @@ burger.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
 /* =========================================================
+   QR DE ACCESO AL SITIO
+   ========================================================= */
+const SITE_URL = 'https://cedetec-ti.github.io/cedetec-sistema/';
+
+function renderQR() {
+    const qrEl = document.getElementById('qrCanvas');
+    if (!qrEl || typeof QRCode === 'undefined') return;
+
+    // Generamos el QR en un contenedor invisible primero: la librería no agrega
+    // quiet zone (margen blanco) propio, y sin ese margen muchos lectores de
+    // celular no lo reconocen, sobre todo impreso. Lo redibujamos con margen
+    // en un canvas nuevo, que es el que queda visible y el que se descarga.
+    const temp = document.createElement('div');
+    temp.style.position = 'absolute';
+    temp.style.left = '-9999px';
+    document.body.appendChild(temp);
+
+    new QRCode(temp, {
+        text: SITE_URL,
+        width: 200,
+        height: 200,
+        colorDark: '#100e18',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M,
+    });
+
+    requestAnimationFrame(() => {
+        const rawCanvas = temp.querySelector('canvas');
+        if (!rawCanvas) { document.body.removeChild(temp); return; }
+        const margin = 32; // quiet zone, por encima del mínimo de 4 módulos que exige el estándar QR
+        const finalCanvas = document.createElement('canvas');
+        finalCanvas.width = rawCanvas.width + margin * 2;
+        finalCanvas.height = rawCanvas.height + margin * 2;
+        const ctx = finalCanvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, finalCanvas.width, finalCanvas.height);
+        ctx.drawImage(rawCanvas, margin, margin);
+        qrEl.innerHTML = '';
+        qrEl.appendChild(finalCanvas);
+        document.body.removeChild(temp);
+    });
+}
+
+document.getElementById('qrDownloadBtn').addEventListener('click', () => {
+    const canvas = document.querySelector('#qrCanvas canvas');
+    if (!canvas) return;
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = 'qr-cedetec.png';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+});
+
+/* =========================================================
    INIT
    ========================================================= */
 renderRubroGrid();
@@ -649,6 +722,7 @@ renderNeedGrid();
 renderPortfolioGrid();
 renderStepsBar();
 updateNextButton();
+renderQR();
 </script>
 
 </body>
