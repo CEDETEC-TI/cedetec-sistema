@@ -179,6 +179,19 @@
     .result-example .rex-label { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--violet); font-weight: 700; font-family: 'Inter', sans-serif; margin-bottom: 4px; }
     .result-example h4 { font-family: 'Inter', sans-serif; font-size: 0.98rem; font-weight: 700; margin-bottom: 4px; }
     .result-example a { color: var(--violet-dark); font-weight: 700; font-size: 0.86rem; font-family: 'Inter', sans-serif; }
+    .multi-hint { display: inline-block; margin-left: 10px; font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--violet-dark); background: #f4f1ff; padding: 4px 10px; border-radius: 999px; vertical-align: middle; }
+    .result-breakdown { text-align: left; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); padding: 6px 20px; margin-bottom: 30px; }
+    .rb-row { display: grid; grid-template-columns: 1.4fr 1.2fr 1fr; gap: 12px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+    .rb-row:last-of-type { border-bottom: 0; }
+    .rb-name { font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .rb-name i { color: var(--violet); width: 18px; text-align: center; flex-shrink: 0; }
+    .rb-price { color: var(--violet-dark); font-weight: 700; }
+    .rb-time { color: var(--ink-soft); }
+    .rb-note { border-top: 1px solid var(--line); padding: 12px 0 10px; font-size: 0.78rem; color: var(--ink-soft); font-family: 'Inter', sans-serif; }
+    .result-examples { margin-bottom: 30px; }
+    .result-examples:empty { display: none; }
+    .result-examples .result-example { margin-bottom: 14px; }
+    .result-examples .result-example:last-child { margin-bottom: 0; }
     .result-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
     .step-actions { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
@@ -243,6 +256,8 @@
         .step-dot { width: 76px; font-size: 0.6rem; }
     }
     @media (max-width: 560px) {
+        .rb-row { grid-template-columns: 1fr; gap: 4px; }
+        .multi-hint { display: block; margin: 8px 0 0; width: fit-content; }
         section { padding: 60px 0; }
         .container { padding: 0 20px; }
         .service-grid-static, .pick-grid, .result-cards, .contact-grid { grid-template-columns: 1fr; }
@@ -321,7 +336,7 @@
             </div>
 
             <div class="step-panel" data-panel="2" hidden>
-                <h3>2. ¿Qué necesitás?</h3>
+                <h3>2. ¿Qué necesitás? <span class="multi-hint">Podés elegir varias</span></h3>
                 <div class="pick-grid" id="needGrid"></div>
             </div>
 
@@ -341,17 +356,11 @@
                     <h3>Tu cotización orientativa</h3>
                     <p class="result-sub" id="resultIntro"></p>
                     <div class="result-cards">
-                        <div class="result-stat"><div class="label">Rango de precio</div><div class="value" id="resultPrice"></div></div>
+                        <div class="result-stat"><div class="label" id="resultPriceLabel">Rango de precio</div><div class="value" id="resultPrice"></div></div>
                         <div class="result-stat"><div class="label">Tiempo de entrega</div><div class="value" id="resultTime"></div></div>
                     </div>
-                    <div class="result-example" id="resultExample" hidden>
-                        <img id="resultExampleImg" src="" alt="">
-                        <div>
-                            <div class="rex-label">Ejemplo real de este sistema</div>
-                            <h4 id="resultExampleName"></h4>
-                            <a id="resultExampleLink" href="#" target="_blank" rel="noopener">Ver sitio en vivo →</a>
-                        </div>
-                    </div>
+                    <div class="result-breakdown" id="resultBreakdown" hidden></div>
+                    <div class="result-examples" id="resultExamples"></div>
                     <div class="result-actions">
                         <a href="#" id="resultWaBtn" target="_blank" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> Confirmar por WhatsApp</a>
                         <button id="resultResetBtn" class="btn btn-ghost">Hacer otra cotización</button>
@@ -478,7 +487,7 @@ function matchPortfolio(rubroId, needId) {
 
 const WHATSAPP_NUMBER = '543704700739';
 
-const state = { step: 1, rubro: null, need: null, name: '', phone: '', business: '' };
+const state = { step: 1, rubro: null, needs: [], name: '', phone: '', business: '' };
 
 /* =========================================================
    RENDER: RUBROS Y NECESIDADES
@@ -498,12 +507,18 @@ function renderRubroGrid() {
 function renderNeedGrid() {
     const el = document.getElementById('needGrid');
     el.innerHTML = NEEDS.map(n => `
-        <div class="pick-card ${state.need === n.id ? 'selected' : ''}" data-need="${n.id}">
+        <div class="pick-card ${state.needs.includes(n.id) ? 'selected' : ''}" data-need="${n.id}" role="checkbox" aria-checked="${state.needs.includes(n.id)}" tabindex="0">
             <i class="fa-solid ${n.icon}"></i><h4>${n.name}</h4><div class="meta">${n.price}</div>
         </div>
     `).join('');
     el.querySelectorAll('[data-need]').forEach(card => {
-        card.addEventListener('click', () => { state.need = card.dataset.need; renderNeedGrid(); updateNextButton(); });
+        const toggle = () => {
+            const id = card.dataset.need;
+            state.needs = state.needs.includes(id) ? state.needs.filter(x => x !== id) : [...state.needs, id];
+            renderNeedGrid(); updateNextButton();
+        };
+        card.addEventListener('click', toggle);
+        card.addEventListener('keydown', (e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); } });
     });
 }
 
@@ -531,46 +546,101 @@ function getRubro(id) { return RUBROS.find(r => r.id === id); }
 function getNeed(id) { return NEEDS.find(n => n.id === id); }
 function getPortfolioItem(id) { return PORTFOLIO.find(p => p.id === id); }
 
+// --- Totales de una selección múltiple ---
+function formatMoney(n) { return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+
+// '$30.000 – $60.000' => rango cerrado; 'Desde $60.000 (a cotizar)' => piso abierto; 'A cotizar…' => sin monto
+function parsePrice(str) {
+    const nums = [...str.matchAll(/\$\s?([\d.]+)/g)].map(m => parseInt(m[1].replace(/\./g, ''), 10));
+    if (!nums.length) return { min: 0, max: 0, open: true };
+    if (nums.length >= 2 && !/desde/i.test(str)) return { min: nums[0], max: nums[1], open: false };
+    return { min: nums[0], max: nums[0], open: true };
+}
+
+function totalPrice(needs) {
+    if (needs.length === 1) return needs[0].price;
+    let min = 0, max = 0, open = false;
+    needs.forEach(n => { const p = parsePrice(n.price); min += p.min; max += p.max; if (p.open) open = true; });
+    if (!open) return `${formatMoney(min)} – ${formatMoney(max)}`;
+    return min > 0 ? `Desde ${formatMoney(min)} (a cotizar)` : 'A cotizar';
+}
+
+// horas del plazo más largo de un texto como '5 a 7 días' o '24 a 48 horas'; null si es 'A definir'
+function timeHours(str) {
+    const nums = [...str.matchAll(/\d+/g)].map(m => parseInt(m[0], 10));
+    if (!nums.length) return null;
+    return nums[nums.length - 1] * (/d[ií]as?/i.test(str) ? 24 : 1);
+}
+
+function totalTime(needs) {
+    if (needs.length === 1) return needs[0].time;
+    const known = needs.filter(n => timeHours(n.time) !== null);
+    if (!known.length) return 'A definir';
+    const longest = known.reduce((a, b) => (timeHours(b.time) > timeHours(a.time) ? b : a));
+    return known.length < needs.length ? `${longest.time} + a definir` : longest.time;
+}
+
+function joinNames(names) {
+    if (names.length <= 1) return names.join('');
+    return names.slice(0, -1).join(', ') + ' y ' + names[names.length - 1];
+}
+
+function selectedNeeds() { return state.needs.map(getNeed).filter(Boolean); }
+
 function buildWhatsAppMessage() {
     const rubro = getRubro(state.rubro);
-    const need = getNeed(state.need);
-    const lines = [
-        'Hola CEDETEC! Quiero cotizar un proyecto:',
-        `• Rubro: ${rubro.name}`,
-        `• Necesito: ${need.name}`,
-        `• Rango orientativo: ${need.price}`,
-        `• Nombre: ${state.name}`,
-        `• Tel: ${state.phone}`,
-    ];
+    const needs = selectedNeeds();
+    const lines = ['Hola CEDETEC! Quiero cotizar un proyecto:', `• Rubro: ${rubro.name}`];
+    if (needs.length === 1) {
+        lines.push(`• Necesito: ${needs[0].name}`, `• Rango orientativo: ${needs[0].price}`);
+    } else {
+        lines.push('• Necesito:');
+        needs.forEach(n => lines.push(`   - ${n.name} (${n.price} · ${n.time})`));
+        lines.push(`• Total orientativo: ${totalPrice(needs)}`, `• Plazo más largo: ${totalTime(needs)}`);
+    }
+    lines.push(`• Nombre: ${state.name}`, `• Tel: ${state.phone}`);
     if (state.business) lines.push(`• Negocio: ${state.business}`);
     return lines.join('\n');
 }
 
 function renderResult() {
     const rubro = getRubro(state.rubro);
-    const need = getNeed(state.need);
-    document.getElementById('resultIntro').textContent = `Para ${rubro.name.toLowerCase()} con ${need.name.toLowerCase()}, esto es lo orientativo:`;
-    document.getElementById('resultPrice').textContent = need.price;
-    document.getElementById('resultTime').textContent = need.time;
+    const needs = selectedNeeds();
+    const multi = needs.length > 1;
+    document.getElementById('resultIntro').textContent = `Para ${rubro.name.toLowerCase()} con ${joinNames(needs.map(n => n.name.charAt(0).toLowerCase() + n.name.slice(1)))}, esto es lo orientativo:`;
+    document.getElementById('resultPriceLabel').textContent = multi ? 'Total orientativo' : 'Rango de precio';
+    document.getElementById('resultPrice').textContent = totalPrice(needs);
+    document.getElementById('resultTime').textContent = totalTime(needs);
 
-    const exampleId = matchPortfolio(state.rubro, state.need);
-    const exampleBox = document.getElementById('resultExample');
-    if (exampleId) {
-        const ex = getPortfolioItem(exampleId);
-        exampleBox.style.display = 'flex';
-        document.getElementById('resultExampleImg').src = `portfolio/${ex.id}.jpg`;
-        document.getElementById('resultExampleImg').alt = `Ejemplo: ${ex.name}`;
-        document.getElementById('resultExampleName').textContent = ex.name;
-        document.getElementById('resultExampleLink').href = ex.url;
-    } else {
-        exampleBox.style.display = 'none';
-    }
+    // detalle por servicio (solo si eligió más de uno)
+    const bd = document.getElementById('resultBreakdown');
+    bd.hidden = !multi;
+    bd.innerHTML = multi
+        ? needs.map(n => `<div class="rb-row"><span class="rb-name"><i class="fa-solid ${n.icon}"></i>${n.name}</span><span class="rb-price">${n.price}</span><span class="rb-time">${n.time}</span></div>`).join('')
+          + '<div class="rb-note">Suma orientativa de cada servicio. El plazo es el del servicio más largo. Lo ajustamos según el alcance de tu proyecto.</div>'
+        : '';
+
+    // un ejemplo por cada sistema distinto que aplique
+    const seen = new Set(), examples = [];
+    needs.forEach(n => {
+        const id = matchPortfolio(state.rubro, n.id);
+        if (id && !seen.has(id)) { seen.add(id); examples.push({ ex: getPortfolioItem(id), need: n }); }
+    });
+    document.getElementById('resultExamples').innerHTML = examples.map(({ ex, need }) => `
+        <div class="result-example">
+            <img src="portfolio/${ex.id}.jpg" alt="Ejemplo: ${ex.name}">
+            <div>
+                <div class="rex-label">${multi ? 'Ejemplo real · ' + need.name : 'Ejemplo real de este sistema'}</div>
+                <h4>${ex.name}</h4>
+                <a href="${ex.url}" target="_blank" rel="noopener">Ver sitio en vivo →</a>
+            </div>
+        </div>`).join('');
 
     document.getElementById('resultWaBtn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsAppMessage())}`;
 }
 
 function resetQuoter() {
-    state.step = 1; state.rubro = null; state.need = null; state.name = ''; state.phone = ''; state.business = '';
+    state.step = 1; state.rubro = null; state.needs = []; state.name = ''; state.phone = ''; state.business = '';
     document.getElementById('inputName').value = '';
     document.getElementById('inputPhone').value = '';
     document.getElementById('inputBusiness').value = '';
@@ -601,7 +671,7 @@ function showPanel(name) { document.querySelectorAll('.step-panel').forEach(p =>
 
 function validateStep(step) {
     if (step === 1) return !!state.rubro;
-    if (step === 2) return !!state.need;
+    if (step === 2) return state.needs.length > 0;
     if (step === 3) {
         const name = document.getElementById('inputName').value.trim();
         const phone = document.getElementById('inputPhone').value.trim();
@@ -619,7 +689,7 @@ function validateStep(step) {
 
 function validateStepSoft(step) {
     if (step === 1) return !!state.rubro;
-    if (step === 2) return !!state.need;
+    if (step === 2) return state.needs.length > 0;
     return true;
 }
 function updateNextButton() {
