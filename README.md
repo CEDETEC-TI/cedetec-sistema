@@ -8,7 +8,7 @@ A diferencia de una landing tradicional, el centro del sitio es un **sistema fun
 
 Sitio estático de un solo archivo (`index.html`, sin dependencias de build):
 
-- Hero y servicios reales (webs a medida, auditorías digitales, automatizaciones).
+- Hero y servicios reales (webs a medida, ficha de Google, auditorías digitales, automatizaciones).
 - **Cotizador**: wizard de 3 pasos + resultado, con precios y tiempos de entrega reales (tomados de la lista de servicios del negocio), que arma un mensaje de WhatsApp con el detalle completo de la cotización.
 - El ejemplo de portfolio mostrado en el resultado cambia dinámicamente según la combinación de rubro + necesidad elegida (ver función `matchPortfolio` en el JS).
 - Portfolio completo con los 7 sitios de demostración, aclarando que son piezas de demo y no clientes reales.

@@ -128,7 +128,7 @@
 
     /* ---------- SERVICIOS ---------- */
     .services { background: var(--bg-panel); }
-    .service-grid-static { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .service-grid-static { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
     .service-card { border: 1px solid var(--line); border-radius: 12px; padding: 28px 24px; background: var(--bg); transition: all 0.2s ease; }
     .service-card:hover { border-color: var(--violet); transform: translateY(-3px); }
     .service-card i { font-size: 1.4rem; color: var(--violet); margin-bottom: 14px; }
@@ -313,6 +313,7 @@
         </div>
         <div class="service-grid-static">
             <div class="service-card"><i class="fa-solid fa-globe"></i><h3>Webs a medida</h3><p>Landings, catálogos con carrito y sistemas de reservas o turnos, listos para vender desde el primer día.</p></div>
+            <div class="service-card"><i class="fa-solid fa-location-dot"></i><h3>Ficha de Google</h3><p>Creamos o actualizamos la ficha de tu negocio en Google Maps: datos, horarios, fotos, WhatsApp y link para reseñas. La verificación depende de Google.</p></div>
             <div class="service-card"><i class="fa-solid fa-magnifying-glass-chart"></i><h3>Auditorías digitales</h3><p>SEO, Meta Ads y diagnóstico de negocio: un informe claro de qué está fallando y cómo resolverlo.</p></div>
             <div class="service-card"><i class="fa-solid fa-robot"></i><h3>Automatizaciones</h3><p>Flujos con n8n y WhatsApp para dejar de hacer a mano lo que se puede automatizar.</p></div>
         </div>
@@ -450,6 +451,7 @@ const NEEDS = [
     { id: 'landing',        name: 'Landing informativa',            icon: 'fa-globe',                  price: '$30.000 – $60.000', time: '72 horas' },
     { id: 'reservas',       name: 'Sistema de reservas o turnos',   icon: 'fa-calendar-check',         price: 'Desde $60.000 (a cotizar)', time: '5 a 7 días' },
     { id: 'catalogo',       name: 'Catálogo con carrito',           icon: 'fa-cart-shopping',          price: 'Desde $60.000 (a cotizar)', time: '5 a 7 días' },
+    { id: 'ficha',          name: 'Ficha de Google (por local)',    icon: 'fa-location-dot',           price: '$15.000 – $25.000', time: '24 a 72 horas + verificación de Google' },
     { id: 'seo',            name: 'Auditoría SEO',                  icon: 'fa-magnifying-glass-chart', price: '$15.000 – $25.000', time: '24 horas' },
     { id: 'metaads',        name: 'Auditoría de Meta Ads',          icon: 'fa-bullseye',               price: '$20.000 – $30.000', time: '24 horas' },
     { id: 'diagnostico',    name: 'Diagnóstico de negocio digital', icon: 'fa-stethoscope',            price: '$25.000 – $40.000', time: '24 a 48 horas' },
@@ -576,7 +578,11 @@ function totalTime(needs) {
     if (needs.length === 1) return needs[0].time;
     const known = needs.filter(n => timeHours(n.time) !== null);
     if (!known.length) return 'A definir';
-    const longest = known.reduce((a, b) => (timeHours(b.time) > timeHours(a.time) ? b : a));
+    // ante empate de horas, gana el texto más largo (conserva aclaraciones como la verificación de Google)
+    const longest = known.reduce((a, b) => {
+        const ha = timeHours(a.time), hb = timeHours(b.time);
+        return (hb > ha || (hb === ha && b.time.length > a.time.length)) ? b : a;
+    });
     return known.length < needs.length ? `${longest.time} + a definir` : longest.time;
 }
 
