@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CEDETEC — Cotizá tu proyecto digital</title>
-<meta name="description" content="CEDETEC Digital. Contanos tu rubro y qué necesitás, y te decimos al instante el rango de precio, el tiempo de entrega y un ejemplo real de lo que armamos.">
+<title>CEDETEC Digital — Elegí lo que necesitás</title>
+<meta name="description" content="CEDETEC Digital: webs y sistemas a medida, manejo de redes sociales, venta de iPhone/Mac y soporte técnico IT para negocios del NEA. Elegí lo que necesitás y te llevamos directo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -107,11 +107,23 @@
         background: radial-gradient(circle at 20% 20%, rgba(109,74,255,0.35), transparent 45%),
                     radial-gradient(circle at 85% 75%, rgba(20,184,196,0.28), transparent 45%);
     }
-    .hero-content { max-width: 700px; padding-top: 90px; position: relative; z-index: 1; }
+    .hero-content { max-width: 900px; padding-top: 90px; position: relative; z-index: 1; }
     .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); color: #fff; margin-bottom: 20px; }
     .hero h1 span { color: var(--violet-light); }
     .hero p { font-family: 'Inter', sans-serif; font-size: 1.06rem; color: rgba(255,255,255,0.75); max-width: 540px; margin-bottom: 34px; font-weight: 400; }
     .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* ---------- SELECTOR (4 líneas de negocio) ---------- */
+    .hub-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 8px; }
+    .hub-card { display: flex; flex-direction: column; gap: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 26px 22px; color: #fff; transition: all 0.2s ease; }
+    .hub-card:hover { border-color: var(--violet-light); background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+    .hub-card i.hub-icon { font-size: 1.4rem; color: var(--violet-light); }
+    .hub-card h3 { font-family: 'Inter', sans-serif; font-size: 1.02rem; font-weight: 700; color: #fff; }
+    .hub-card p { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.65); flex: 1; }
+    .hub-card .hub-go { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--violet-light); }
+
+    /* ---------- SOPORTE IT ---------- */
+    .support { background: var(--bg); }
 
     /* ---------- STRIP ---------- */
     .strip { background: var(--charcoal-soft); color: rgba(255,255,255,0.8); padding: 18px 0; position: relative; z-index: 1; }
@@ -129,7 +141,7 @@
     /* ---------- SERVICIOS ---------- */
     .services { background: var(--bg-panel); }
     .service-grid-static { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-    .service-card { border: 1px solid var(--line); border-radius: 12px; padding: 28px 24px; background: var(--bg); transition: all 0.2s ease; }
+    .service-card { display: block; border: 1px solid var(--line); border-radius: 12px; padding: 28px 24px; background: var(--bg); transition: all 0.2s ease; }
     .service-card:hover { border-color: var(--violet); transform: translateY(-3px); }
     .service-card i { font-size: 1.4rem; color: var(--violet); margin-bottom: 14px; }
     .service-card h3 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.02rem; margin-bottom: 8px; }
@@ -243,7 +255,7 @@
 
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 900px) {
-        .service-grid-static, .pick-grid, .result-cards, .contact-grid { grid-template-columns: 1fr 1fr; }
+        .service-grid-static, .pick-grid, .result-cards, .contact-grid, .hub-grid { grid-template-columns: 1fr 1fr; }
         .form-grid { grid-template-columns: 1fr; }
         .nav-links { display: none; }
         .nav-links.open {
@@ -260,7 +272,7 @@
         .multi-hint { display: block; margin: 8px 0 0; width: fit-content; }
         section { padding: 60px 0; }
         .container { padding: 0 20px; }
-        .service-grid-static, .pick-grid, .result-cards, .contact-grid { grid-template-columns: 1fr; }
+        .service-grid-static, .pick-grid, .result-cards, .contact-grid, .hub-grid { grid-template-columns: 1fr; }
         .strip .container { flex-direction: column; align-items: flex-start; }
         .result-example { flex-direction: column; text-align: center; }
         .result-actions { flex-direction: column; width: 100%; }
@@ -274,12 +286,13 @@
     <nav class="container">
         <a href="#top" class="logo">CEDETEC<span>.</span></a>
         <div class="nav-links" id="navLinks">
-            <a href="#servicios">Servicios</a>
-            <a href="#cotizador">Cotizador</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="https://cedetec-ti.github.io/cedetec-tienda/" target="_blank" rel="noopener">Tienda de iPhones</a>
+            <a href="#top">Inicio</a>
+            <a href="#cotizador">Web o Sistema</a>
+            <a href="https://cedetec-ti.github.io/cedetec-redes/" target="_blank" rel="noopener">Redes</a>
+            <a href="https://cedetec-ti.github.io/cedetec-tienda/" target="_blank" rel="noopener">Tienda</a>
+            <a href="#soporte-it">Soporte IT</a>
             <a href="#contacto">Contacto</a>
-            <a href="#cotizador" class="nav-cta">Cotizar mi proyecto</a>
+            <a href="#top" class="nav-cta">Elegí tu servicio</a>
         </div>
         <button class="burger" id="burgerBtn" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
     </nav>
@@ -288,11 +301,33 @@
 <section class="hero" id="top">
     <div class="container hero-content">
         <span class="eyebrow on-dark">CEDETEC Digital · Formosa, NEA y Paraguay</span>
-        <h1>Decinos qué necesitás.<br>Te decimos <span>cuánto sale y cuándo</span>.</h1>
-        <p>Armamos webs y sistemas a medida para negocios del NEA: reservas, catálogos, auditorías y automatizaciones. Usá el cotizador y en un minuto sabés el rango de precio y el tiempo de entrega.</p>
-        <div class="hero-actions">
-            <a href="#cotizador" class="btn btn-violet"><i class="fa-solid fa-wand-magic-sparkles"></i> Cotizar mi proyecto</a>
-            <a href="#portfolio" class="btn btn-outline"><i class="fa-solid fa-layer-group"></i> Ver ejemplos reales</a>
+        <h1>¿Qué estás <span>buscando</span>?</h1>
+        <p>Elegí lo que necesitás y te llevamos directo. Estas son nuestras 4 líneas, todas con atención real por WhatsApp.</p>
+        <div class="hub-grid">
+            <a href="#cotizador" class="hub-card">
+                <i class="fa-solid fa-globe hub-icon"></i>
+                <h3>Web o sistema para mi negocio</h3>
+                <p>Landings, catálogos con carrito y sistemas de reservas, listos para vender.</p>
+                <span class="hub-go">Cotizar ahora →</span>
+            </a>
+            <a href="https://cedetec-ti.github.io/cedetec-redes/" target="_blank" rel="noopener" class="hub-card">
+                <i class="fa-solid fa-camera-retro hub-icon"></i>
+                <h3>Manejo de redes sociales</h3>
+                <p>Fotos, videos, reels e historias para Instagram, TikTok y Facebook, mes a mes.</p>
+                <span class="hub-go">Ver paquetes →</span>
+            </a>
+            <a href="https://cedetec-ti.github.io/cedetec-tienda/" target="_blank" rel="noopener" class="hub-card">
+                <i class="fa-solid fa-mobile-screen-button hub-icon"></i>
+                <h3>Comprar un iPhone o Mac</h3>
+                <p>Productos Apple originales, nuevos y usados, con precio final a la vista.</p>
+                <span class="hub-go">Ver catálogo →</span>
+            </a>
+            <a href="#soporte-it" class="hub-card">
+                <i class="fa-solid fa-screwdriver-wrench hub-icon"></i>
+                <h3>Soporte técnico IT</h3>
+                <p>Instalación, mantenimiento y asesoramiento en equipos y redes.</p>
+                <span class="hub-go">Consultar →</span>
+            </a>
         </div>
     </div>
 </section>
@@ -309,14 +344,14 @@
     <div class="container">
         <div class="section-head center">
             <span class="eyebrow">Servicios</span>
-            <h2>Lo que hacemos</h2>
-            <p>Servicios digitales para negocios y profesionales del NEA, con entregas rápidas.</p>
+            <h2>Nuestras 4 líneas</h2>
+            <p>Servicios digitales para negocios y profesionales del NEA, con atención directa por WhatsApp.</p>
         </div>
         <div class="service-grid-static">
-            <div class="service-card"><i class="fa-solid fa-globe"></i><h3>Webs a medida</h3><p>Landings, catálogos con carrito y sistemas de reservas o turnos, listos para vender desde el primer día.</p></div>
-            <div class="service-card"><i class="fa-solid fa-location-dot"></i><h3>Ficha de Google</h3><p>Creamos o actualizamos la ficha de tu negocio en Google Maps: datos, horarios, fotos, WhatsApp y link para reseñas. La verificación depende de Google.</p></div>
-            <div class="service-card"><i class="fa-solid fa-magnifying-glass-chart"></i><h3>Auditorías digitales</h3><p>SEO, Meta Ads y diagnóstico de negocio: un informe claro de qué está fallando y cómo resolverlo.</p></div>
-            <div class="service-card"><i class="fa-solid fa-robot"></i><h3>Automatizaciones</h3><p>Flujos con n8n y WhatsApp para dejar de hacer a mano lo que se puede automatizar.</p></div>
+            <a href="#cotizador" class="service-card"><i class="fa-solid fa-globe"></i><h3>Web o sistema a medida</h3><p>Landings, catálogos con carrito y sistemas de reservas o turnos, listos para vender desde el primer día.</p></a>
+            <a href="https://cedetec-ti.github.io/cedetec-redes/" target="_blank" rel="noopener" class="service-card"><i class="fa-solid fa-camera-retro"></i><h3>Manejo de redes sociales</h3><p>Vamos a tu negocio, sacamos fotos y video, y manejamos Instagram, TikTok y Facebook por vos.</p></a>
+            <a href="https://cedetec-ti.github.io/cedetec-tienda/" target="_blank" rel="noopener" class="service-card"><i class="fa-solid fa-mobile-screen-button"></i><h3>iPhone, Mac y accesorios</h3><p>Productos Apple originales en Formosa, nuevos y usados, con el precio final ya calculado.</p></a>
+            <a href="#soporte-it" class="service-card"><i class="fa-solid fa-screwdriver-wrench"></i><h3>Soporte técnico IT</h3><p>Instalación, mantenimiento y asesoramiento en equipos y redes para tu negocio.</p></a>
         </div>
     </div>
 </section>
@@ -386,6 +421,19 @@
         </div>
         <p class="portfolio-note">Piezas de demostración creadas para mostrar distintos tipos de sistemas según el rubro — todavía no son clientes reales, pero el tuyo puede ser el próximo.</p>
         <div class="portfolio-grid" id="portfolioGrid"></div>
+    </div>
+</section>
+
+<section class="support" id="soporte-it">
+    <div class="container">
+        <div class="section-head center">
+            <span class="eyebrow">Soporte IT</span>
+            <h2>Soporte técnico para tu negocio</h2>
+            <p>Instalación, mantenimiento y asesoramiento en equipos y redes. Contanos qué necesitás y te armamos una propuesta a medida.</p>
+        </div>
+        <div style="text-align:center">
+            <a href="https://wa.me/543704700739?text=Hola%20CEDETEC%2C%20necesito%20soporte%20t%C3%A9cnico%20para..." target="_blank" rel="noopener" class="btn btn-violet"><i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp</a>
+        </div>
     </div>
 </section>
 
