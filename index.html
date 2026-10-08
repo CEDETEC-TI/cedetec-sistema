@@ -3,339 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CEDETEC Digital — Elegí lo que necesitás</title>
+<title>CEDETEC Digital — Bienvenido</title>
 <meta name="description" content="CEDETEC Digital: webs y sistemas a medida, manejo de redes sociales, venta de iPhone/Mac y soporte técnico IT para negocios del NEA. Elegí lo que necesitás y te llevamos directo.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cedetec-ti.github.io/cedetec-sistema/">
-<meta property="og:title" content="CEDETEC Digital — Elegí lo que necesitás">
-<meta property="og:description" content="Webs y sistemas a medida, manejo de redes sociales, venta de iPhone/Mac y soporte técnico IT para negocios del NEA.">
+<meta property="og:title" content="CEDETEC Digital — Bienvenido">
+<meta property="og:description" content="Webs y sistemas a medida, manejo de redes sociales, venta de iPhone/Mac y soporte técnico IT para negocios del NEA. Elegí lo que necesitás.">
 <meta property="og:image" content="https://cedetec-ti.github.io/cedetec-sistema/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="CEDETEC Digital — Elegí lo que necesitás">
-<meta name="twitter:description" content="Webs y sistemas a medida, manejo de redes sociales, venta de iPhone/Mac y soporte técnico IT para negocios del NEA.">
+<meta name="twitter:title" content="CEDETEC Digital — Bienvenido">
+<meta name="twitter:description" content="Webs y sistemas a medida, manejo de redes sociales, venta de iPhone/Mac y soporte técnico IT para negocios del NEA. Elegí lo que necesitás.">
 <meta name="twitter:image" content="https://cedetec-ti.github.io/cedetec-sistema/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-        --bg: #f7f7fb;
-        --bg-panel: #ffffff;
         --ink: #14121f;
-        --ink-soft: #605c78;
-        --line: #e6e4f2;
         --charcoal: #100e18;
         --charcoal-soft: #1a1728;
         --violet: #6d4aff;
         --violet-dark: #5636e0;
         --violet-light: #9c85ff;
-        --cyan: #14b8c4;
-        --ok: #2f9e5b;
-        --danger: #c23a3a;
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
         font-family: 'Inter', sans-serif;
-        background: var(--bg);
-        color: var(--ink);
-        line-height: 1.65;
-        font-weight: 400;
+        background: var(--charcoal);
+        color: #fff;
+        line-height: 1.55;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
         overflow-x: hidden;
     }
 
-    h1, h2, h3, h4 {
-        font-family: 'Sora', sans-serif;
-        font-weight: 700;
-        letter-spacing: -0.4px;
-        color: var(--ink);
-        line-height: 1.15;
-    }
-
+    h1 { font-family: 'Sora', sans-serif; font-weight: 700; letter-spacing: -0.4px; line-height: 1.12; }
     a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
-    ul { list-style: none; }
-    button { font-family: inherit; }
-    .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; width: 100%; }
 
-    .eyebrow {
-        font-family: 'Inter', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: var(--violet);
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 16px;
-    }
-    .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--violet); }
-    .eyebrow.on-dark { color: var(--violet-light); }
-    .eyebrow.on-dark::before { background: var(--violet-light); }
-
-    .btn {
-        display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-        padding: 15px 30px; border-radius: 10px; font-size: 0.88rem; font-weight: 700;
-        cursor: pointer; border: 1px solid transparent; transition: all 0.2s ease; font-family: 'Inter', sans-serif;
-    }
-    .btn-violet { background: var(--violet); color: #fff; }
-    .btn-violet:hover { background: var(--violet-dark); }
-    .btn-violet:disabled { background: #cfc9e8; cursor: not-allowed; }
-    .btn-outline { border-color: rgba(255,255,255,0.35); color: #fff; }
-    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
-    .btn-outline-dark { border-color: var(--ink); color: var(--ink); background: none; }
-    .btn-outline-dark:hover { background: var(--ink); color: #fff; }
-    .btn-ghost { background: none; color: var(--ink-soft); border-color: var(--line); }
-    .btn-ghost:hover { background: var(--line); }
-    .btn-wa { background: #25D366; color: #fff; }
-    .btn-wa:hover { background: #1fb355; }
-
-    /* ---------- NAV ---------- */
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 500; padding: 22px 0; transition: all 0.3s ease; }
-    header.scrolled { padding: 12px 0; background: rgba(16, 14, 24, 0.95); backdrop-filter: blur(10px); box-shadow: 0 6px 24px rgba(0,0,0,0.18); }
-    nav.container { display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-family: 'Sora', sans-serif; font-size: 1.4rem; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
-    .logo span { color: var(--violet-light); }
-    .nav-links { display: flex; gap: 30px; align-items: center; }
-    .nav-links a:not(.nav-cta) { color: rgba(255,255,255,0.85); font-size: 0.83rem; font-weight: 600; transition: color 0.2s; }
-    .nav-links a:not(.nav-cta):hover { color: var(--violet-light); }
-    .nav-cta { background: var(--violet); color: #fff !important; padding: 11px 22px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; }
-    .nav-cta:hover { background: var(--violet-dark); }
-    .burger { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
-
-    /* ---------- HERO ---------- */
-    .hero { min-height: 92vh; display: flex; align-items: center; position: relative; background: var(--charcoal); color: #fff; overflow: hidden; }
-    .hero::before {
+    /* ---------- FONDO ---------- */
+    .welcome { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; padding: 110px 0 60px; }
+    .welcome::before {
         content: ""; position: absolute; inset: 0;
         background: radial-gradient(circle at 20% 20%, rgba(109,74,255,0.35), transparent 45%),
                     radial-gradient(circle at 85% 75%, rgba(20,184,196,0.28), transparent 45%);
     }
-    .hero-content { max-width: 900px; padding-top: 90px; position: relative; z-index: 1; }
-    .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); color: #fff; margin-bottom: 20px; }
-    .hero h1 span { color: var(--violet-light); }
-    .hero p { font-family: 'Inter', sans-serif; font-size: 1.06rem; color: rgba(255,255,255,0.75); max-width: 540px; margin-bottom: 34px; font-weight: 400; }
-    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
-    /* ---------- SELECTOR (4 líneas de negocio) ---------- */
-    .hub-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 8px; }
+    /* ---------- LOGO ---------- */
+    .brand-mark { position: fixed; top: 26px; left: 32px; z-index: 5; font-family: 'Sora', sans-serif; font-size: 1.4rem; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
+    .brand-mark span { color: var(--violet-light); }
+
+    /* ---------- HERO ---------- */
+    .welcome-content { position: relative; z-index: 1; }
+    .eyebrow { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 3px; font-size: 0.72rem; font-weight: 700; color: var(--violet-light); display: inline-flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--violet-light); }
+    .welcome h1 { font-size: clamp(2.2rem, 5.6vw, 3.6rem); margin-bottom: 16px; }
+    .welcome h1 span { color: var(--violet-light); }
+    .welcome > .container > p { font-family: 'Inter', sans-serif; font-size: 1.05rem; color: rgba(255,255,255,0.72); max-width: 560px; margin-bottom: 40px; }
+
+    /* ---------- SELECTOR ---------- */
+    .hub-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
     .hub-card { display: flex; flex-direction: column; gap: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 26px 22px; color: #fff; transition: all 0.2s ease; }
     .hub-card:hover { border-color: var(--violet-light); background: rgba(255,255,255,0.1); transform: translateY(-3px); }
     .hub-card i.hub-icon { font-size: 1.4rem; color: var(--violet-light); }
-    .hub-card h3 { font-family: 'Inter', sans-serif; font-size: 1.02rem; font-weight: 700; color: #fff; }
+    .hub-card h2 { font-family: 'Inter', sans-serif; font-size: 1.02rem; font-weight: 700; color: #fff; }
     .hub-card p { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.65); flex: 1; }
     .hub-card .hub-go { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--violet-light); }
 
-    /* ---------- SOPORTE IT ---------- */
-    .support { background: var(--bg); }
-
-    /* ---------- STRIP ---------- */
-    .strip { background: var(--charcoal-soft); color: rgba(255,255,255,0.8); padding: 18px 0; position: relative; z-index: 1; }
-    .strip .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-size: 0.82rem; font-family: 'Inter', sans-serif; }
-    .strip .item { display: flex; align-items: center; gap: 10px; }
-    .strip i { color: var(--violet-light); }
-
-    /* ---------- SECTION BASE ---------- */
-    section { padding: 96px 0; }
-    .section-head { max-width: 640px; margin-bottom: 46px; }
-    .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
-    .section-head h2 { font-size: clamp(2rem, 4.2vw, 2.7rem); margin-bottom: 14px; }
-    .section-head p { color: var(--ink-soft); font-size: 1.02rem; font-family: 'Inter', sans-serif; }
-
-    /* ---------- SERVICIOS ---------- */
-    .services { background: var(--bg-panel); }
-    .service-grid-static { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-    .service-card { display: block; border: 1px solid var(--line); border-radius: 12px; padding: 28px 24px; background: var(--bg); transition: all 0.2s ease; }
-    .service-card:hover { border-color: var(--violet); transform: translateY(-3px); }
-    .service-card i { font-size: 1.4rem; color: var(--violet); margin-bottom: 14px; }
-    .service-card h3 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.02rem; margin-bottom: 8px; }
-    .service-card p { color: var(--ink-soft); font-size: 0.88rem; font-family: 'Inter', sans-serif; }
-
-    /* ---------- COTIZADOR (SISTEMA) ---------- */
-    .quoter { background: var(--bg); }
-    .quoter-card { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 14px; padding: 40px; box-shadow: 0 24px 60px rgba(20,18,31,0.06); }
-
-    .steps-bar { display: flex; align-items: center; margin-bottom: 44px; overflow-x: auto; padding-bottom: 4px; }
-    .step-dot { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.7rem; color: var(--ink-soft); font-family: 'Inter', sans-serif; font-weight: 600; text-align: center; flex-shrink: 0; width: 100px; }
-    .step-dot span { width: 34px; height: 34px; border-radius: 50%; background: var(--bg-panel); border: 2px solid var(--line); display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 700; color: var(--ink-soft); transition: all 0.2s; }
-    .step-dot.active span { border-color: var(--violet); color: var(--violet); background: #fff; }
-    .step-dot.done span { border-color: var(--violet); background: var(--violet); color: #fff; }
-    .step-dot.active, .step-dot.done { color: var(--ink); }
-    .step-line { flex: 1; height: 2px; background: var(--line); margin: 0 4px; margin-bottom: 26px; min-width: 20px; }
-    .step-line.done { background: var(--violet); }
-
-    .step-panel h3 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 22px; }
-
-    .pick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .pick-card { border: 2px solid var(--line); border-radius: 12px; padding: 22px 18px; cursor: pointer; background: var(--bg-panel); transition: all 0.15s ease; position: relative; text-align: center; }
-    .pick-card:hover { border-color: var(--violet-light); }
-    .pick-card.selected { border-color: var(--violet); background: #f4f1ff; }
-    .pick-card.selected::after { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; top: 10px; right: 12px; color: var(--violet); font-size: 0.8rem; }
-    .pick-card i { font-size: 1.5rem; color: var(--violet); margin-bottom: 12px; display: block; }
-    .pick-card h4 { font-family: 'Inter', sans-serif; font-size: 0.92rem; font-weight: 700; }
-    .pick-card .meta { font-size: 0.76rem; color: var(--ink-soft); margin-top: 4px; font-family: 'Inter', sans-serif; }
-
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .form-grid label { display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; font-weight: 600; font-family: 'Inter', sans-serif; }
-    .form-grid label.full { grid-column: 1 / -1; }
-    .form-grid input { border: 2px solid var(--line); border-radius: 8px; padding: 13px 14px; font-size: 0.95rem; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); }
-    .form-grid input:focus { outline: none; border-color: var(--violet); }
-    .form-error { color: var(--danger); font-size: 0.85rem; margin-top: 14px; font-family: 'Inter', sans-serif; font-weight: 600; }
-
-    .result-box { text-align: center; }
-    .result-icon { font-size: 2.6rem; color: var(--ok); margin-bottom: 14px; }
-    .result-box h3 { font-family: 'Sora', sans-serif; font-size: 1.6rem; margin-bottom: 6px; }
-    .result-box > p.result-sub { color: var(--ink-soft); font-family: 'Inter', sans-serif; margin-bottom: 30px; }
-    .result-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; text-align: left; }
-    .result-stat { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
-    .result-stat .label { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-soft); font-weight: 700; font-family: 'Inter', sans-serif; margin-bottom: 8px; }
-    .result-stat .value { font-family: 'Sora', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--violet-dark); }
-    .result-example { display: flex; gap: 18px; align-items: center; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 30px; text-align: left; }
-    .result-example img { width: 110px; height: 74px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
-    .result-example .rex-label { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--violet); font-weight: 700; font-family: 'Inter', sans-serif; margin-bottom: 4px; }
-    .result-example h4 { font-family: 'Inter', sans-serif; font-size: 0.98rem; font-weight: 700; margin-bottom: 4px; }
-    .result-example a { color: var(--violet-dark); font-weight: 700; font-size: 0.86rem; font-family: 'Inter', sans-serif; }
-    .multi-hint { display: inline-block; margin-left: 10px; font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--violet-dark); background: #f4f1ff; padding: 4px 10px; border-radius: 999px; vertical-align: middle; }
-    .result-breakdown { text-align: left; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); padding: 6px 20px; margin-bottom: 30px; }
-    .rb-row { display: grid; grid-template-columns: 1.4fr 1.2fr 1fr; gap: 12px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); font-family: 'Inter', sans-serif; font-size: 0.9rem; }
-    .rb-row:last-of-type { border-bottom: 0; }
-    .rb-name { font-weight: 700; display: flex; align-items: center; gap: 10px; }
-    .rb-name i { color: var(--violet); width: 18px; text-align: center; flex-shrink: 0; }
-    .rb-price { color: var(--violet-dark); font-weight: 700; }
-    .rb-time { color: var(--ink-soft); }
-    .rb-note { border-top: 1px solid var(--line); padding: 12px 0 10px; font-size: 0.78rem; color: var(--ink-soft); font-family: 'Inter', sans-serif; }
-    .result-examples { margin-bottom: 30px; }
-    .result-examples:empty { display: none; }
-    .result-examples .result-example { margin-bottom: 14px; }
-    .result-examples .result-example:last-child { margin-bottom: 0; }
-    .result-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-
-    .step-actions { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
-
-    /* ---------- PORTFOLIO ---------- */
-    .portfolio { background: var(--bg-panel); }
-    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 22px; }
-    .portfolio-card { background: var(--bg); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.2s ease; }
-    .portfolio-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(20,18,31,0.08); border-color: var(--violet-light); }
-    .portfolio-thumb { aspect-ratio: 3/2; overflow: hidden; background: var(--line); }
-    .portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-    .portfolio-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-    .portfolio-tag { display: inline-block; background: #f4f1ff; color: var(--violet-dark); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 10px; border-radius: 6px; width: fit-content; font-family: 'Inter', sans-serif; }
-    .portfolio-name { font-size: 1rem; font-family: 'Inter', sans-serif; font-weight: 700; }
-    .portfolio-desc { font-size: 0.84rem; color: var(--ink-soft); font-family: 'Inter', sans-serif; flex: 1; }
-    .portfolio-link { color: var(--violet-dark); font-weight: 700; font-size: 0.85rem; font-family: 'Inter', sans-serif; margin-top: 4px; }
-    .portfolio-link:hover { text-decoration: underline; }
-    .portfolio-note { text-align: center; max-width: 620px; margin: -16px auto 40px; font-size: 0.88rem; color: var(--ink-soft); font-family: 'Inter', sans-serif; }
-
-    /* ---------- CONTACTO ---------- */
-    .location { background: var(--charcoal); color: #fff; }
-    .location .section-head p { color: rgba(255,255,255,0.6); }
-    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
-    .contact-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 26px 22px; text-align: center; transition: all 0.2s; }
-    .contact-card:hover { border-color: var(--violet-light); transform: translateY(-3px); }
-    .contact-card i { font-size: 1.5rem; color: var(--violet-light); margin-bottom: 12px; }
-    .contact-card .clabel { font-size: 0.76rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-family: 'Inter', sans-serif; }
-    .contact-card .cvalue { font-family: 'Inter', sans-serif; font-weight: 700; }
-
-    .qr-box {
-        max-width: 280px; margin: 44px auto 0; background: #fff; border-radius: 16px;
-        padding: 28px 24px 24px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    }
-    .qr-box #qrCanvas { display: flex; justify-content: center; margin-bottom: 16px; }
-    .qr-box #qrCanvas img, .qr-box #qrCanvas canvas { border-radius: 6px; }
-    .qr-caption { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--ink); margin-bottom: 4px; }
-    .qr-url { font-family: 'Inter', sans-serif; font-size: 0.76rem; color: var(--ink-soft); margin-bottom: 16px; word-break: break-all; }
-    .qr-box .btn { width: 100%; padding: 11px 20px; font-size: 0.8rem; }
-
     /* ---------- FOOTER ---------- */
-    footer { background: var(--charcoal); color: rgba(247,247,251,0.5); padding: 40px 0 24px; border-top: 1px solid rgba(255,255,255,0.08); }
-    .footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 0.78rem; font-family: 'Inter', sans-serif; }
+    footer { position: relative; z-index: 1; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+    .footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 0.78rem; font-family: 'Inter', sans-serif; color: rgba(247,247,251,0.5); }
     .footer-bottom a { color: var(--violet-light); }
     .footer-bottom a:hover { text-decoration: underline; }
 
-    /* ---------- WHATSAPP FLOAT ---------- */
-    .wa-float { position: fixed; bottom: 26px; right: 26px; z-index: 400; width: 58px; height: 58px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 10px 26px rgba(0,0,0,0.25); animation: floatpulse 2.4s ease infinite; }
-    @keyframes floatpulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
-
-    /* ---------- RESPONSIVE ---------- */
     @media (max-width: 900px) {
-        .service-grid-static, .pick-grid, .result-cards, .contact-grid, .hub-grid { grid-template-columns: 1fr 1fr; }
-        .form-grid { grid-template-columns: 1fr; }
-        .nav-links { display: none; }
-        .nav-links.open {
-            display: flex; position: fixed; top: 64px; left: 0; right: 0;
-            background: rgba(16,14,24,0.97); flex-direction: column; padding: 24px; gap: 20px;
-            backdrop-filter: blur(10px); text-align: center; z-index: 499;
-        }
-        .burger { display: block; }
-        .quoter-card { padding: 26px 20px; }
-        .step-dot { width: 76px; font-size: 0.6rem; }
+        .hub-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) {
-        .rb-row { grid-template-columns: 1fr; gap: 4px; }
-        .multi-hint { display: block; margin: 8px 0 0; width: fit-content; }
-        section { padding: 60px 0; }
         .container { padding: 0 20px; }
-        .service-grid-static, .pick-grid, .result-cards, .contact-grid, .hub-grid { grid-template-columns: 1fr; }
-        .strip .container { flex-direction: column; align-items: flex-start; }
-        .result-example { flex-direction: column; text-align: center; }
-        .result-actions { flex-direction: column; width: 100%; }
-        .result-actions .btn { width: 100%; }
+        .brand-mark { left: 20px; top: 20px; }
+        .welcome { padding: 90px 0 40px; }
+        .hub-grid { grid-template-columns: 1fr; }
     }
 </style>
 </head>
 <body>
 
-<header id="siteHeader">
-    <nav class="container">
-        <a href="#top" class="logo">CEDETEC<span>.</span></a>
-        <div class="nav-links" id="navLinks">
-            <a href="#top">Inicio</a>
-            <a href="#cotizador">Web o Sistema</a>
-            <a href="https://cedetec-ti.github.io/cedetec-redes/" target="_blank" rel="noopener">Redes</a>
-            <a href="https://cedetec-ti.github.io/cedetec-tienda/" target="_blank" rel="noopener">Tienda</a>
-            <a href="#soporte-it">Soporte IT</a>
-            <a href="#contacto">Contacto</a>
-            <a href="#top" class="nav-cta">Elegí tu servicio</a>
-        </div>
-        <button class="burger" id="burgerBtn" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
-    </nav>
-</header>
+<a href="index.html" class="brand-mark">CEDETEC<span>.</span></a>
 
-<section class="hero" id="top">
-    <div class="container hero-content">
-        <span class="eyebrow on-dark">CEDETEC Digital · Formosa, NEA y Paraguay</span>
-        <h1>¿Qué estás <span>buscando</span>?</h1>
+<section class="welcome">
+    <div class="container welcome-content">
+        <span class="eyebrow">CEDETEC Digital · Formosa, NEA y Paraguay</span>
+        <h1>Bienvenido a <span>CEDETEC</span></h1>
         <p>Elegí lo que necesitás y te llevamos directo. Estas son nuestras 4 líneas, todas con atención real por WhatsApp.</p>
         <div class="hub-grid">
-            <a href="#cotizador" class="hub-card">
+            <a href="cotizador.html" class="hub-card">
                 <i class="fa-solid fa-globe hub-icon"></i>
-                <h3>Web o sistema para mi negocio</h3>
+                <h2>Web o sistema para mi negocio</h2>
                 <p>Landings, catálogos con carrito y sistemas de reservas, listos para vender.</p>
                 <span class="hub-go">Cotizar ahora →</span>
             </a>
             <a href="https://cedetec-ti.github.io/cedetec-redes/" target="_blank" rel="noopener" class="hub-card">
                 <i class="fa-solid fa-camera-retro hub-icon"></i>
-                <h3>Manejo de redes sociales</h3>
+                <h2>Manejo de redes sociales</h2>
                 <p>Fotos, videos, reels e historias para Instagram, TikTok y Facebook, mes a mes.</p>
                 <span class="hub-go">Ver paquetes →</span>
             </a>
             <a href="https://cedetec-ti.github.io/cedetec-tienda/" target="_blank" rel="noopener" class="hub-card">
                 <i class="fa-solid fa-mobile-screen-button hub-icon"></i>
-                <h3>Comprar un iPhone o Mac</h3>
+                <h2>Comprar un iPhone o Mac</h2>
                 <p>Productos Apple originales, nuevos y usados, con precio final a la vista.</p>
                 <span class="hub-go">Ver catálogo →</span>
             </a>
-            <a href="#soporte-it" class="hub-card">
+            <a href="soporte.html" class="hub-card">
                 <i class="fa-solid fa-screwdriver-wrench hub-icon"></i>
-                <h3>Soporte técnico IT</h3>
+                <h2>Soporte técnico IT</h2>
                 <p>Instalación, mantenimiento y asesoramiento en equipos y redes.</p>
                 <span class="hub-go">Consultar →</span>
             </a>
@@ -343,525 +131,12 @@
     </div>
 </section>
 
-<div class="strip">
-    <div class="container">
-        <div class="item"><i class="fa-solid fa-bolt"></i> Entregas en 24 a 72 horas</div>
-        <div class="item"><i class="fa-solid fa-gift"></i> Primera auditoría, gratis</div>
-        <div class="item"><i class="fa-solid fa-comments"></i> Atención directa por WhatsApp</div>
-    </div>
-</div>
-
-<section class="services" id="servicios">
-    <div class="container">
-        <div class="section-head center">
-            <span class="eyebrow">Servicios</span>
-            <h2>Nuestras 4 líneas</h2>
-            <p>Servicios digitales para negocios y profesionales del NEA, con atención directa por WhatsApp.</p>
-        </div>
-        <div class="service-grid-static">
-            <a href="#cotizador" class="service-card"><i class="fa-solid fa-globe"></i><h3>Web o sistema a medida</h3><p>Landings, catálogos con carrito y sistemas de reservas o turnos, listos para vender desde el primer día.</p></a>
-            <a href="https://cedetec-ti.github.io/cedetec-redes/" target="_blank" rel="noopener" class="service-card"><i class="fa-solid fa-camera-retro"></i><h3>Manejo de redes sociales</h3><p>Vamos a tu negocio, sacamos fotos y video, y manejamos Instagram, TikTok y Facebook por vos.</p></a>
-            <a href="https://cedetec-ti.github.io/cedetec-tienda/" target="_blank" rel="noopener" class="service-card"><i class="fa-solid fa-mobile-screen-button"></i><h3>iPhone, Mac y accesorios</h3><p>Productos Apple originales en Formosa, nuevos y usados, con el precio final ya calculado.</p></a>
-            <a href="#soporte-it" class="service-card"><i class="fa-solid fa-screwdriver-wrench"></i><h3>Soporte técnico IT</h3><p>Instalación, mantenimiento y asesoramiento en equipos y redes para tu negocio.</p></a>
-        </div>
-    </div>
-</section>
-
-<section class="quoter" id="cotizador">
-    <div class="container">
-        <div class="section-head center">
-            <span class="eyebrow">Sistema de cotización</span>
-            <h2>Cotizá tu proyecto</h2>
-            <p>Contestá 3 preguntas y te mostramos el rango de precio, el tiempo de entrega y un ejemplo real parecido a lo que necesitás.</p>
-        </div>
-
-        <div class="quoter-card">
-            <div class="steps-bar" id="stepsBar"></div>
-
-            <div class="step-panel" data-panel="1">
-                <h3>1. ¿Cuál es tu rubro?</h3>
-                <div class="pick-grid" id="rubroGrid"></div>
-            </div>
-
-            <div class="step-panel" data-panel="2" hidden>
-                <h3>2. ¿Qué necesitás? <span class="multi-hint">Podés elegir varias</span></h3>
-                <div class="pick-grid" id="needGrid"></div>
-            </div>
-
-            <div class="step-panel" data-panel="3" hidden>
-                <h3>3. Tus datos</h3>
-                <div class="form-grid">
-                    <label>Nombre y apellido<input id="inputName" type="text" placeholder="Ej: Marcos Duarte"></label>
-                    <label>WhatsApp<input id="inputPhone" type="tel" placeholder="Ej: 3704123456"></label>
-                    <label class="full">Nombre de tu negocio (opcional)<input id="inputBusiness" type="text" placeholder="Ej: Almacén Don Marcos"></label>
-                </div>
-                <p class="form-error" id="formError" hidden></p>
-            </div>
-
-            <div class="step-panel" data-panel="result" hidden>
-                <div class="result-box">
-                    <i class="fa-solid fa-circle-check result-icon"></i>
-                    <h3>Tu cotización orientativa</h3>
-                    <p class="result-sub" id="resultIntro"></p>
-                    <div class="result-cards">
-                        <div class="result-stat"><div class="label" id="resultPriceLabel">Rango de precio</div><div class="value" id="resultPrice"></div></div>
-                        <div class="result-stat"><div class="label">Tiempo de entrega</div><div class="value" id="resultTime"></div></div>
-                    </div>
-                    <div class="result-breakdown" id="resultBreakdown" hidden></div>
-                    <div class="result-examples" id="resultExamples"></div>
-                    <div class="result-actions">
-                        <a href="#" id="resultWaBtn" target="_blank" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> Confirmar por WhatsApp</a>
-                        <button id="resultResetBtn" class="btn btn-ghost">Hacer otra cotización</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="step-actions" id="stepActions">
-                <button class="btn btn-ghost" id="prevBtn" hidden><i class="fa-solid fa-arrow-left"></i> Atrás</button>
-                <button class="btn btn-violet" id="nextBtn">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="portfolio" id="portfolio">
-    <div class="container">
-        <div class="section-head center">
-            <span class="eyebrow">Portfolio</span>
-            <h2>Sistemas que ya armamos</h2>
-        </div>
-        <p class="portfolio-note">Piezas de demostración creadas para mostrar distintos tipos de sistemas según el rubro — todavía no son clientes reales, pero el tuyo puede ser el próximo.</p>
-        <div class="portfolio-grid" id="portfolioGrid"></div>
-    </div>
-</section>
-
-<section class="support" id="soporte-it">
-    <div class="container">
-        <div class="section-head center">
-            <span class="eyebrow">Soporte IT</span>
-            <h2>Soporte técnico para tu negocio</h2>
-            <p>Instalación, mantenimiento y asesoramiento en equipos y redes. Contanos qué necesitás y te armamos una propuesta a medida.</p>
-        </div>
-        <div style="text-align:center">
-            <a href="https://wa.me/543704700739?text=Hola%20CEDETEC%2C%20necesito%20soporte%20t%C3%A9cnico%20para..." target="_blank" rel="noopener" class="btn btn-violet"><i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp</a>
-        </div>
-    </div>
-</section>
-
-<section class="location" id="contacto">
-    <div class="container">
-        <div class="section-head center">
-            <span class="eyebrow on-dark">Contacto</span>
-            <h2 style="color:#fff">Empezá hoy</h2>
-            <p>Escribinos directo o usá el cotizador de arriba. Respondemos el mismo día.</p>
-        </div>
-        <div class="contact-grid">
-            <a href="https://wa.me/543704700739?text=Hola%20CEDETEC%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" class="contact-card">
-                <i class="fa-brands fa-whatsapp"></i>
-                <div class="clabel">WhatsApp</div>
-                <div class="cvalue">+54 370 470-0739</div>
-            </a>
-            <a href="https://www.instagram.com/cedetec.comm/" target="_blank" class="contact-card">
-                <i class="fa-brands fa-instagram"></i>
-                <div class="clabel">Instagram</div>
-                <div class="cvalue">@cedetec.comm</div>
-            </a>
-            <a href="mailto:guillermobassi.u@gmail.com" class="contact-card">
-                <i class="fa-solid fa-envelope"></i>
-                <div class="clabel">Email</div>
-                <div class="cvalue">guillermobassi.u@gmail.com</div>
-            </a>
-        </div>
-
-        <div class="qr-box">
-            <div id="qrCanvas"></div>
-            <p class="qr-caption">Escaneá para cotizar tu proyecto</p>
-            <p class="qr-url">cedetec-ti.github.io/cedetec-sistema</p>
-            <button id="qrDownloadBtn" class="btn btn-outline-dark"><i class="fa-solid fa-download"></i> Descargar QR</button>
-        </div>
-    </div>
-</section>
-
 <footer>
     <div class="container footer-bottom">
         <span>© 2026 CEDETEC Digital · Formosa, Argentina.</span>
-        <span><a href="https://wa.me/543704700739" target="_blank">WhatsApp</a> · <a href="https://www.instagram.com/cedetec.comm/" target="_blank">Instagram</a></span>
+        <span><a href="https://wa.me/543704700739" target="_blank" rel="noopener">WhatsApp</a> · <a href="https://www.instagram.com/cedetec.comm/" target="_blank" rel="noopener">Instagram</a></span>
     </div>
 </footer>
-
-<a href="https://wa.me/543704700739?text=Hola%20CEDETEC%2C%20quiero%20consultar" target="_blank" class="wa-float" aria-label="Consultar por WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
-</a>
-
-<script>
-/* =========================================================
-   DATOS DEL SISTEMA (reales del negocio)
-   ========================================================= */
-const RUBROS = [
-    { id: 'gastronomia',    name: 'Gastronomía',        icon: 'fa-utensils' },
-    { id: 'belleza',        name: 'Barbería / Belleza', icon: 'fa-scissors' },
-    { id: 'indumentaria',   name: 'Indumentaria',       icon: 'fa-shirt' },
-    { id: 'fitness',        name: 'Gimnasios',          icon: 'fa-dumbbell' },
-    { id: 'profesionales',  name: 'Profesionales / Salud', icon: 'fa-user-doctor' },
-    { id: 'automotor',      name: 'Automotor',          icon: 'fa-car' },
-    { id: 'otro',           name: 'Otro rubro',         icon: 'fa-store' },
-];
-
-const NEEDS = [
-    { id: 'landing',        name: 'Landing informativa',            icon: 'fa-globe',                  price: '$30.000 – $60.000', time: '72 horas' },
-    { id: 'reservas',       name: 'Sistema de reservas o turnos',   icon: 'fa-calendar-check',         price: 'Desde $60.000 (a cotizar)', time: '5 a 7 días' },
-    { id: 'catalogo',       name: 'Catálogo con carrito',           icon: 'fa-cart-shopping',          price: 'Desde $60.000 (a cotizar)', time: '5 a 7 días' },
-    { id: 'ficha',          name: 'Ficha de Google (por local)',    icon: 'fa-location-dot',           price: '$15.000 – $25.000', time: '24 a 72 horas + verificación de Google' },
-    { id: 'seo',            name: 'Auditoría SEO',                  icon: 'fa-magnifying-glass-chart', price: '$15.000 – $25.000', time: '24 horas' },
-    { id: 'metaads',        name: 'Auditoría de Meta Ads',          icon: 'fa-bullseye',               price: '$20.000 – $30.000', time: '24 horas' },
-    { id: 'diagnostico',    name: 'Diagnóstico de negocio digital', icon: 'fa-stethoscope',            price: '$25.000 – $40.000', time: '24 a 48 horas' },
-    { id: 'automatizacion', name: 'Automatización (n8n / WhatsApp)', icon: 'fa-robot',                  price: 'A cotizar según el proceso', time: 'A definir' },
-];
-
-const PORTFOLIO = [
-    { id: 'restaurante',    name: 'Restaurante — Ámbar',            tag: 'Gastronomía',        desc: 'Carta interactiva, galería y reservas por WhatsApp.', url: 'https://cedetec-ti.github.io/restaurante/' },
-    { id: 'barberia',       name: 'Barbería — Navaja',              tag: 'Belleza',            desc: 'Reservas de turnos con disponibilidad en tiempo real.', url: 'https://cedetec-ti.github.io/barberia/' },
-    { id: 'tienda-ropa',    name: 'Tienda de ropa — Terral',        tag: 'Indumentaria',       desc: 'Catálogo con carrito, talles y checkout por WhatsApp.', url: 'https://cedetec-ti.github.io/tienda-ropa/' },
-    { id: 'gimnasio',       name: 'Gimnasio — Forja',               tag: 'Fitness',            desc: 'Reserva de clases grupales con cupos en tiempo real.', url: 'https://cedetec-ti.github.io/gimnasio/' },
-    { id: 'rotiseria',      name: 'Rotisería — Fogón',              tag: 'Delivery',           desc: 'Pedidos online con carrito, envío o retiro.', url: 'https://cedetec-ti.github.io/rotiseria/' },
-    { id: 'consultorio',    name: 'Consultorio — Sonrisa',          tag: 'Profesionales',      desc: 'Turnos por tratamiento, profesional y obra social.', url: 'https://cedetec-ti.github.io/consultorio/' },
-    { id: 'concesionaria',  name: 'Concesionaria — Ruta Motors',    tag: 'Automotor',          desc: 'Catálogo con simulador de cuotas de financiación.', url: 'https://cedetec-ti.github.io/concesionaria/' },
-    { id: 'cafeteria',      name: 'Cafetería — Grano',              tag: 'Cafetería',          desc: 'Tarjeta de sellos digital para fidelizar clientes.', url: 'https://cedetec-ti.github.io/cafeteria/' },
-    { id: 'cosmetologia',   name: 'Cosmetología — Nácar',           tag: 'Estética',           desc: 'Turnos para tratamientos y tienda de productos.', url: 'https://cedetec-ti.github.io/cosmetologia/' },
-];
-
-// Qué ejemplo del portfolio mostrar según rubro + necesidad elegidos
-function matchPortfolio(rubroId, needId) {
-    if (needId === 'reservas') {
-        if (rubroId === 'fitness') return 'gimnasio';
-        if (rubroId === 'profesionales') return 'consultorio';
-        return 'barberia';
-    }
-    if (needId === 'catalogo') {
-        if (rubroId === 'indumentaria') return 'tienda-ropa';
-        if (rubroId === 'gastronomia') return 'rotiseria';
-        if (rubroId === 'automotor') return 'concesionaria';
-        return 'tienda-ropa';
-    }
-    if (needId === 'landing') return 'restaurante';
-    return null; // auditorías y automatización no tienen sitio de demo público
-}
-
-const WHATSAPP_NUMBER = '543704700739';
-
-const state = { step: 1, rubro: null, needs: [], name: '', phone: '', business: '' };
-
-/* =========================================================
-   RENDER: RUBROS Y NECESIDADES
-   ========================================================= */
-function renderRubroGrid() {
-    const el = document.getElementById('rubroGrid');
-    el.innerHTML = RUBROS.map(r => `
-        <div class="pick-card ${state.rubro === r.id ? 'selected' : ''}" data-rubro="${r.id}">
-            <i class="fa-solid ${r.icon}"></i><h4>${r.name}</h4>
-        </div>
-    `).join('');
-    el.querySelectorAll('[data-rubro]').forEach(card => {
-        card.addEventListener('click', () => { state.rubro = card.dataset.rubro; renderRubroGrid(); updateNextButton(); });
-    });
-}
-
-function renderNeedGrid() {
-    const el = document.getElementById('needGrid');
-    el.innerHTML = NEEDS.map(n => `
-        <div class="pick-card ${state.needs.includes(n.id) ? 'selected' : ''}" data-need="${n.id}" role="checkbox" aria-checked="${state.needs.includes(n.id)}" tabindex="0">
-            <i class="fa-solid ${n.icon}"></i><h4>${n.name}</h4><div class="meta">${n.price}</div>
-        </div>
-    `).join('');
-    el.querySelectorAll('[data-need]').forEach(card => {
-        const toggle = () => {
-            const id = card.dataset.need;
-            state.needs = state.needs.includes(id) ? state.needs.filter(x => x !== id) : [...state.needs, id];
-            renderNeedGrid(); updateNextButton();
-        };
-        card.addEventListener('click', toggle);
-        card.addEventListener('keydown', (e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); } });
-    });
-}
-
-/* =========================================================
-   RENDER: PORTFOLIO
-   ========================================================= */
-function renderPortfolioGrid() {
-    document.getElementById('portfolioGrid').innerHTML = PORTFOLIO.map(p => `
-        <div class="portfolio-card">
-            <div class="portfolio-thumb"><img src="portfolio/${p.id}.jpg" alt="Sitio demo — ${p.name}" loading="lazy"></div>
-            <div class="portfolio-body">
-                <span class="portfolio-tag">${p.tag}</span>
-                <div class="portfolio-name">${p.name}</div>
-                <p class="portfolio-desc">${p.desc}</p>
-                <a href="${p.url}" class="portfolio-link" target="_blank" rel="noopener">Ver sitio →</a>
-            </div>
-        </div>
-    `).join('');
-}
-
-/* =========================================================
-   RESULTADO
-   ========================================================= */
-function getRubro(id) { return RUBROS.find(r => r.id === id); }
-function getNeed(id) { return NEEDS.find(n => n.id === id); }
-function getPortfolioItem(id) { return PORTFOLIO.find(p => p.id === id); }
-
-// --- Totales de una selección múltiple ---
-function formatMoney(n) { return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
-
-// '$30.000 – $60.000' => rango cerrado; 'Desde $60.000 (a cotizar)' => piso abierto; 'A cotizar…' => sin monto
-function parsePrice(str) {
-    const nums = [...str.matchAll(/\$\s?([\d.]+)/g)].map(m => parseInt(m[1].replace(/\./g, ''), 10));
-    if (!nums.length) return { min: 0, max: 0, open: true };
-    if (nums.length >= 2 && !/desde/i.test(str)) return { min: nums[0], max: nums[1], open: false };
-    return { min: nums[0], max: nums[0], open: true };
-}
-
-function totalPrice(needs) {
-    if (needs.length === 1) return needs[0].price;
-    let min = 0, max = 0, open = false;
-    needs.forEach(n => { const p = parsePrice(n.price); min += p.min; max += p.max; if (p.open) open = true; });
-    if (!open) return `${formatMoney(min)} – ${formatMoney(max)}`;
-    return min > 0 ? `Desde ${formatMoney(min)} (a cotizar)` : 'A cotizar';
-}
-
-// horas del plazo más largo de un texto como '5 a 7 días' o '24 a 48 horas'; null si es 'A definir'
-function timeHours(str) {
-    const nums = [...str.matchAll(/\d+/g)].map(m => parseInt(m[0], 10));
-    if (!nums.length) return null;
-    return nums[nums.length - 1] * (/d[ií]as?/i.test(str) ? 24 : 1);
-}
-
-function totalTime(needs) {
-    if (needs.length === 1) return needs[0].time;
-    const known = needs.filter(n => timeHours(n.time) !== null);
-    if (!known.length) return 'A definir';
-    // ante empate de horas, gana el texto más largo (conserva aclaraciones como la verificación de Google)
-    const longest = known.reduce((a, b) => {
-        const ha = timeHours(a.time), hb = timeHours(b.time);
-        return (hb > ha || (hb === ha && b.time.length > a.time.length)) ? b : a;
-    });
-    return known.length < needs.length ? `${longest.time} + a definir` : longest.time;
-}
-
-function joinNames(names) {
-    if (names.length <= 1) return names.join('');
-    return names.slice(0, -1).join(', ') + ' y ' + names[names.length - 1];
-}
-
-function selectedNeeds() { return state.needs.map(getNeed).filter(Boolean); }
-
-function buildWhatsAppMessage() {
-    const rubro = getRubro(state.rubro);
-    const needs = selectedNeeds();
-    const lines = ['Hola CEDETEC! Quiero cotizar un proyecto:', `• Rubro: ${rubro.name}`];
-    if (needs.length === 1) {
-        lines.push(`• Necesito: ${needs[0].name}`, `• Rango orientativo: ${needs[0].price}`);
-    } else {
-        lines.push('• Necesito:');
-        needs.forEach(n => lines.push(`   - ${n.name} (${n.price} · ${n.time})`));
-        lines.push(`• Total orientativo: ${totalPrice(needs)}`, `• Plazo más largo: ${totalTime(needs)}`);
-    }
-    lines.push(`• Nombre: ${state.name}`, `• Tel: ${state.phone}`);
-    if (state.business) lines.push(`• Negocio: ${state.business}`);
-    return lines.join('\n');
-}
-
-function renderResult() {
-    const rubro = getRubro(state.rubro);
-    const needs = selectedNeeds();
-    const multi = needs.length > 1;
-    document.getElementById('resultIntro').textContent = `Para ${rubro.name.toLowerCase()} con ${joinNames(needs.map(n => n.name.charAt(0).toLowerCase() + n.name.slice(1)))}, esto es lo orientativo:`;
-    document.getElementById('resultPriceLabel').textContent = multi ? 'Total orientativo' : 'Rango de precio';
-    document.getElementById('resultPrice').textContent = totalPrice(needs);
-    document.getElementById('resultTime').textContent = totalTime(needs);
-
-    // detalle por servicio (solo si eligió más de uno)
-    const bd = document.getElementById('resultBreakdown');
-    bd.hidden = !multi;
-    bd.innerHTML = multi
-        ? needs.map(n => `<div class="rb-row"><span class="rb-name"><i class="fa-solid ${n.icon}"></i>${n.name}</span><span class="rb-price">${n.price}</span><span class="rb-time">${n.time}</span></div>`).join('')
-          + '<div class="rb-note">Suma orientativa de cada servicio. El plazo es el del servicio más largo. Lo ajustamos según el alcance de tu proyecto.</div>'
-        : '';
-
-    // un ejemplo por cada sistema distinto que aplique
-    const seen = new Set(), examples = [];
-    needs.forEach(n => {
-        const id = matchPortfolio(state.rubro, n.id);
-        if (id && !seen.has(id)) { seen.add(id); examples.push({ ex: getPortfolioItem(id), need: n }); }
-    });
-    document.getElementById('resultExamples').innerHTML = examples.map(({ ex, need }) => `
-        <div class="result-example">
-            <img src="portfolio/${ex.id}.jpg" alt="Ejemplo: ${ex.name}">
-            <div>
-                <div class="rex-label">${multi ? 'Ejemplo real · ' + need.name : 'Ejemplo real de este sistema'}</div>
-                <h4>${ex.name}</h4>
-                <a href="${ex.url}" target="_blank" rel="noopener">Ver sitio en vivo →</a>
-            </div>
-        </div>`).join('');
-
-    document.getElementById('resultWaBtn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsAppMessage())}`;
-}
-
-function resetQuoter() {
-    state.step = 1; state.rubro = null; state.needs = []; state.name = ''; state.phone = ''; state.business = '';
-    document.getElementById('inputName').value = '';
-    document.getElementById('inputPhone').value = '';
-    document.getElementById('inputBusiness').value = '';
-    document.getElementById('formError').hidden = true;
-    document.getElementById('stepActions').style.display = 'flex';
-    renderRubroGrid(); renderNeedGrid();
-    goToStep(1);
-}
-document.getElementById('resultResetBtn').addEventListener('click', resetQuoter);
-
-/* =========================================================
-   NAVEGACIÓN DEL WIZARD
-   ========================================================= */
-function renderStepsBar() {
-    const labels = ['Rubro', 'Necesidad', 'Tus datos', 'Resultado'];
-    const bar = document.getElementById('stepsBar');
-    let html = '';
-    labels.forEach((label, i) => {
-        const n = i + 1;
-        const cls = n < state.step ? 'done' : (n === state.step ? 'active' : '');
-        html += `<div class="step-dot ${cls}"><span>${n < state.step ? '<i class="fa-solid fa-check"></i>' : n}</span>${label}</div>`;
-        if (n < labels.length) html += `<div class="step-line ${n < state.step ? 'done' : ''}"></div>`;
-    });
-    bar.innerHTML = html;
-}
-
-function showPanel(name) { document.querySelectorAll('.step-panel').forEach(p => { p.hidden = p.dataset.panel !== String(name); }); }
-
-function validateStep(step) {
-    if (step === 1) return !!state.rubro;
-    if (step === 2) return state.needs.length > 0;
-    if (step === 3) {
-        const name = document.getElementById('inputName').value.trim();
-        const phone = document.getElementById('inputPhone').value.trim();
-        const digits = phone.replace(/\D/g, '');
-        const err = document.getElementById('formError');
-        if (name.length < 3) { err.hidden = false; err.textContent = 'Ingresá tu nombre y apellido.'; return false; }
-        if (digits.length < 8) { err.hidden = false; err.textContent = 'Ingresá un WhatsApp válido (con código de área).'; return false; }
-        err.hidden = true;
-        state.name = name; state.phone = phone;
-        state.business = document.getElementById('inputBusiness').value.trim();
-        return true;
-    }
-    return true;
-}
-
-function validateStepSoft(step) {
-    if (step === 1) return !!state.rubro;
-    if (step === 2) return state.needs.length > 0;
-    return true;
-}
-function updateNextButton() {
-    document.getElementById('nextBtn').disabled = state.step <= 2 ? !validateStepSoft(state.step) : false;
-}
-
-function goToStep(n) {
-    state.step = n;
-    renderStepsBar();
-    showPanel(n === 4 ? 'result' : n);
-    document.getElementById('prevBtn').hidden = n === 1;
-    const nextBtn = document.getElementById('nextBtn');
-    if (n === 4) {
-        renderResult();
-        document.getElementById('stepActions').style.display = 'none';
-    } else {
-        document.getElementById('stepActions').style.display = 'flex';
-        nextBtn.innerHTML = n === 3 ? 'Ver mi cotización <i class="fa-solid fa-arrow-right"></i>' : 'Siguiente <i class="fa-solid fa-arrow-right"></i>';
-    }
-    updateNextButton();
-}
-
-document.getElementById('nextBtn').addEventListener('click', () => {
-    if (!validateStep(state.step)) return;
-    goToStep(state.step + 1);
-});
-document.getElementById('prevBtn').addEventListener('click', () => goToStep(Math.max(1, state.step - 1)));
-document.getElementById('inputName').addEventListener('input', updateNextButton);
-document.getElementById('inputPhone').addEventListener('input', updateNextButton);
-
-/* =========================================================
-   HEADER + BURGER
-   ========================================================= */
-const header = document.getElementById('siteHeader');
-window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 40));
-
-const burger = document.getElementById('burgerBtn');
-const navLinks = document.getElementById('navLinks');
-burger.addEventListener('click', () => navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-/* =========================================================
-   QR DE ACCESO AL SITIO
-   ========================================================= */
-const SITE_URL = 'https://cedetec-ti.github.io/cedetec-sistema/';
-
-function renderQR() {
-    const qrEl = document.getElementById('qrCanvas');
-    if (!qrEl || typeof QRCode === 'undefined') return;
-
-    // Generamos el QR en un contenedor invisible primero: la librería no agrega
-    // quiet zone (margen blanco) propio, y sin ese margen muchos lectores de
-    // celular no lo reconocen, sobre todo impreso. Lo redibujamos con margen
-    // en un canvas nuevo, que es el que queda visible y el que se descarga.
-    const temp = document.createElement('div');
-    temp.style.position = 'absolute';
-    temp.style.left = '-9999px';
-    document.body.appendChild(temp);
-
-    new QRCode(temp, {
-        text: SITE_URL,
-        width: 200,
-        height: 200,
-        colorDark: '#100e18',
-        colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.M,
-    });
-
-    requestAnimationFrame(() => {
-        const rawCanvas = temp.querySelector('canvas');
-        if (!rawCanvas) { document.body.removeChild(temp); return; }
-        const margin = 32; // quiet zone, por encima del mínimo de 4 módulos que exige el estándar QR
-        const finalCanvas = document.createElement('canvas');
-        finalCanvas.width = rawCanvas.width + margin * 2;
-        finalCanvas.height = rawCanvas.height + margin * 2;
-        const ctx = finalCanvas.getContext('2d');
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, finalCanvas.width, finalCanvas.height);
-        ctx.drawImage(rawCanvas, margin, margin);
-        qrEl.innerHTML = '';
-        qrEl.appendChild(finalCanvas);
-        document.body.removeChild(temp);
-    });
-}
-
-document.getElementById('qrDownloadBtn').addEventListener('click', () => {
-    const canvas = document.querySelector('#qrCanvas canvas');
-    if (!canvas) return;
-    const a = document.createElement('a');
-    a.href = canvas.toDataURL('image/png');
-    a.download = 'qr-cedetec.png';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-});
-
-/* =========================================================
-   INIT
-   ========================================================= */
-renderRubroGrid();
-renderNeedGrid();
-renderPortfolioGrid();
-renderStepsBar();
-updateNextButton();
-renderQR();
-</script>
 
 </body>
 </html>
